@@ -74,3 +74,8 @@ This add-on supports some of the parameters as the default Statamic tags, these 
 |:----------:|:---------------:|:----------------------------------------:|
 |      `tag` | `boolean` false | Enable this to output the full HTML tag. |
 | `absolute` | `boolean` false | Output an absolute or relative URL.      |
+
+## And Finally...
+
+Now you're ready to build your CSS and JavaScript assets using Laravel Mix - once complete, there should be a
+`mix-manifest.json` in the build directory.
