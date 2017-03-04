@@ -1,0 +1,6 @@
+name: LaravelMix
+version: "1.0"
+description: An add-on for Statamic which allows you to link to assets in a Laravel-like way
+url: https://github.com/edcs/laravel-mix-statamic
+developer: Edward Coleridge Smith
+developer_url: https://edcs.me
