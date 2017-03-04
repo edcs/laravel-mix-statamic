@@ -34,7 +34,7 @@ class LaravelMixTags extends Tags
     {
         $src  = $this->get('src', Config::get('theming.theme'));
         $path = '/css/' . Str::ensureRight($src, '.css');
-        $url  = $this->themeUrl($this->getManifest()->get($path));
+        $url  = $this->themeUrl($this->getManifest()->get($path, $path));
 
         if ($this->getBool('tag')) {
             return '<link rel="stylesheet" href="' . $url . '" />';
@@ -52,7 +52,7 @@ class LaravelMixTags extends Tags
     {
         $src  = $this->get('src', Config::get('theming.theme'));
         $path = '/js/' . Str::ensureRight($src, '.js');
-        $url  = $this->themeUrl($this->getManifest()->get($path));
+        $url  = $this->themeUrl($this->getManifest()->get($path, $path));
 
         if ($this->getBool('tag')) {
             return '<script src="' . $url . '"></script>';
