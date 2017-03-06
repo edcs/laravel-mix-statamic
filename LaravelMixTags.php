@@ -18,7 +18,7 @@ class LaravelMixTags extends Tags
     /**
      * The {{ laravel_mix }} tag - outputs the revision manifest file as JSON.
      *
-     * @return string|array
+     * @return string
      */
     public function index()
     {
