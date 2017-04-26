@@ -1,7 +1,7 @@
 # Laravel Mix for Statamic
 
-This is a Stamic add-on which allows you to build CSS and JavaScript files for your website using 
-[Laravel Mix](https://github.com/JeffreyWay/laravel-mix). Mix differs from Laravel Elixir in several ways - the one we're 
+This is a Stamic add-on which allows you to build CSS and JavaScript files for your website using
+[Laravel Mix](https://github.com/JeffreyWay/laravel-mix). Mix differs from Laravel Elixir in several ways - the one we're
 interested in here is the `mix-manifest.json` file, if you're familiar with Elixir then you'll notice the filename has changed.
 This makes it incompatible with Statamic's built in support, hence needing a separate add-on.
 
@@ -10,7 +10,7 @@ This makes it incompatible with Statamic's built in support, hence needing a sep
 The easiest way of installing this add-on is to download as a zip bundle straigt from GitHub and placing it in your
 `site/addons` directory.
 
-An alternative way, if you're a Git user, would be do add it as a Git submodule. This gives you the avantage of being able 
+An alternative way, if you're a Git user, would be do add it as a Git submodule. This gives you the avantage of being able
 to pull in any updates which may be published in the future. The following command will install this add-on as a submodule if
 run from the root of your project:
 
@@ -21,7 +21,7 @@ $ git submodule add https://github.com/edcs/laravel-mix-statamic site/addons/Lar
 ## Setting Up Mix
 
 This is an example `webpack.mix.js` file - it sets the public path where the built JavaScript and CSS should end up (I like to
-keep my Statamic application files out of my public directory), then it transpiles my JavaScript modules into a single file 
+keep my Statamic application files out of my public directory), then it transpiles my JavaScript modules into a single file
 and finally it converts my SASS into CSS:
 
 ```javascript
@@ -74,6 +74,18 @@ This add-on supports some of the parameters as the default Statamic tags, these 
 |:----------:|:---------------:|:----------------------------------------:|
 |      `tag` | `boolean` false | Enable this to output the full HTML tag. |
 | `absolute` | `boolean` false | Output an absolute or relative URL.      |
+
+## Using with Laravel Blade instead of Antlers.
+
+When using Laravel Blade the add-on tags aren't available. Instead, use the modifier:
+
+```
+<!-- For CSS. -->
+<link rel="stylesheet" href="{{ modify('css')->laravelMix() }}">
+
+<!-- For JS. -->
+<script src="{{ modify('js')->laravelMix() }}"></script>
+```
 
 ## And Finally...
 
