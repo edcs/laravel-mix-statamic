@@ -68,12 +68,13 @@ You can now update your theme template tags to use those provided by this add-on
 {{ laravel_mix:js }}
 ```
 
-This add-on supports some of the parameters as the default Statamic tags, these are:
+This add-on supports the following tags, these are:
 
 |  Parameter |     Default     |                Description               |
-|:----------:|:---------------:|:----------------------------------------:|
+|:----------:|:---------------:|------------------------------------------|
 |      `tag` | `boolean` false | Enable this to output the full HTML tag. |
 | `absolute` | `boolean` false | Output an absolute or relative URL.      |
+|     `path` | `string`  null  | The path which gets prepended to the URL of the asset. If it is omitted, the default Statamitc behaviour is invoked which is to generate a URL relative to the theme's public directory |
 
 ## Using with Laravel Blade instead of Antlers.
 

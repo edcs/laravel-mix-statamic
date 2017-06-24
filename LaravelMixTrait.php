@@ -18,7 +18,7 @@ trait LaravelMixTrait
     /**
      * The name of Mix's revision manifest file.
      */
-    protected $manifest = 'mix-manifest.json';
+    static $manifest = 'mix-manifest.json';
 
     /**
      * Returns the path of given asset type.
@@ -28,8 +28,8 @@ trait LaravelMixTrait
      */
     public function getAssetPath($type)
     {
-        $theme    = Config::get('theming.theme');
-        $path     = '/' . $type . '/' . Str::ensureRight($theme, '.' . $type);
+        $src = $this->get('src', Config::get('theming.theme'));
+        $path = '/' . $type . '/' . Str::ensureRight($src, '.' . $type);
         $manifest = $this->getManifest()->get($path);
 
         return $this->themeUrl($manifest);
@@ -43,11 +43,15 @@ trait LaravelMixTrait
      */
     private function themeUrl($path)
     {
-        $url = URL::assemble(
-            Config::get('system.filesystems.themes.url'),
-            Config::get('theming.theme'),
-            $path
-        );
+        if (!$this->getParam('path', false)) {
+            $url = URL::assemble(
+                Config::get('system.filesystems.themes.url'),
+                Config::get('theming.theme'),
+                $path
+            );
+        } else {
+            $url = URL::assemble($this->getParam('path'), $path);
+        }
 
         $url = URL::prependSiteUrl(
             $url,
@@ -69,7 +73,7 @@ trait LaravelMixTrait
      */
     private function getManifest()
     {
-        $path = webroot_path('site/themes/' . Config::get('theming.theme') . '/' . $this->manifest);
+        $path = webroot_path(static::$manifest);
 
         return collect(json_decode(File::get($path), true));
     }
