@@ -73,8 +73,17 @@ trait LaravelMixTrait
      */
     private function getManifest()
     {
-        $path = webroot_path(static::$manifest);
+        // Get theme path
+        $pathInTheme = webroot_path(URL::assemble(
+            Config::get('system.filesystems.themes.url'),
+            Config::get('theming.theme'),
+            static::$manifest
+        ));
 
-        return collect(json_decode(File::get($path), true));
+        // Get root path
+        $pathInRoot = webroot_path(static::$manifest);
+
+        // Get either theme or root manifest
+        return collect(json_decode(File::get($pathInTheme, File::get($pathInRoot)), true));
     }
 }
